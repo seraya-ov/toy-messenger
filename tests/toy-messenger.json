@@ -1,0 +1,465 @@
+{
+	"info": {
+		"_postman_id": "aceb9e8c-e364-4bae-96fc-925bcdaa0dc2",
+		"name": "Toy-messenger",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "delete_messages",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\",\r\n    \"timestamps\": [\r\n        \"2022-06-14T09:09:01.833867\",\r\n        \"2022-06-14T09:09:03.227275\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/delete_messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"delete_messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register_user1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"user1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_message",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\",\r\n    \"timestamp\":\"2022-06-14T09:07:09.296767\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/delete_message",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"delete_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch_new_messages_second",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/fetch_new_messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"fetch_new_messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch_new_messages_first",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/fetch_new_messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"fetch_new_messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch_messages_first",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\",\r\n    \"period_start\": \"2022-06-12T12:12:00.123132\",\r\n    \"period_end\": \"2022-06-13T12:12:00.123132\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/fetch_messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"fetch_messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch_messages_third",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\",\r\n    \"period_start\": \"2022-06-12T12:12:00.123132\",\r\n    \"period_end\": \"2022-06-23T12:12:00.123132\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/fetch_messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"fetch_messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch_messages_second",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\",\r\n    \"period_start\": \"2022-06-12T12:12:00.123132\",\r\n    \"period_end\": \"2022-06-23T12:12:00.123132\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/fetch_messages",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"fetch_messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_message_u1_u2_1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\",\r\n    \"message\": \"Message from user1 to user2 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/send_message",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"send_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_message_u1_u2_2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\",\r\n    \"message\": \"Message from user1 to user2 2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/send_message",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"send_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_message_u1_u2_3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user1\",\r\n    \"recipient\": \"user2\",\r\n    \"message\": \"Message from user1 to user2 3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/send_message",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"send_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_message_u2_u1_1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user2\",\r\n    \"recipient\": \"user1\",\r\n    \"message\": \"Message from user2 to user1 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/send_message",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"send_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_message_u2_u1_2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sender\": \"user2\",\r\n    \"recipient\": \"user1\",\r\n    \"message\": \"Message from user2 to user1 2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/send_message",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"send_message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register_user2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"user2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

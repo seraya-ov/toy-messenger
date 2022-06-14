@@ -16,12 +16,12 @@ The	service	must	be	implemented	in	the	form	of a	REST-API
 
 ## API:
 
-* `/register`: register a new user with given login
-* `/send_message`: send a text message 
-* `/fetch_new_messages`: fetch new messages
-* `/fetch_messages`: fetch all messages
-* `/delete_message`: delete one message
-* `/delete_messages`: delete multiple messages
+* `/register`: (POST) register a new user with given login 
+* `/send_message`: (POST) send a text message 
+* `/fetch_new_messages`: (PUT) fetch new messages
+* `/fetch_messages`: (PUT) fetch all messages
+* `/delete_message`: (DELETE) delete one message
+* `/delete_messages`: (DELETE) delete multiple messages
 
 
 ## How to run:

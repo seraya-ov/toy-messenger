@@ -17,11 +17,113 @@ The	service	must	be	implemented	in	the	form	of a	REST-API
 ## API:
 
 * `/register`: (POST) register a new user with given login 
+
+    JSON request:
+    ```
+    {
+        "login": string, between 3 and 128 symbols
+    }
+    ```
+    JSON response (201):
+    ```
+      {
+          "OK": "created user with login {login}"
+      }
+    ```
 * `/send_message`: (POST) send a text message 
-* `/fetch_new_messages`: (PUT) fetch new messages
+
+    JSON request:
+    ```
+    {
+        "sender": sender login
+        "recipient": recipient login
+        "message": message
+    }
+    ```
+    JSON response (201):
+    ```
+      {
+          "OK": "message sent successfully"
+      }
+    ```
+* `/fetch_new_messages`: (PUT) fetch new messages 
+
+    JSON request:
+    ```
+        {
+            "sender": sender login
+            "recipient": recipient login
+        }
+    ```
+    JSON response (200):
+    ```
+      {
+            "messages": [
+                {
+                    "sender": sender login
+                    "recipient": recipient login
+                    "timestamp": timestamp
+                    "message": message text
+                }
+            ]
+        }
+    ```
 * `/fetch_messages`: (PUT) fetch all messages
+
+    JSON request:
+    ```
+      {
+            "sender": sender login
+            "recipient": recipient login
+            "period_start": period start timestamp
+            "period_end": period end timestamp
+      }
+    ```
+    JSON response (200):
+    ```
+      {
+            "messages": [
+                {
+                    "sender": sender login
+                    "recipient": recipient login
+                    "timestamp": timestamp
+                    "message": message text
+                }
+            ]
+        }
+    ```
 * `/delete_message`: (DELETE) delete one message
+
+    JSON request:
+    ```
+      {
+          "sender": sender login
+          "recipient": recipient login
+          "timestamp": message timestamp
+      }
+    ```
+    JSON response (201):
+    ```
+      {
+          "OK": "message deleted"
+      }
+    ```
 * `/delete_messages`: (DELETE) delete multiple messages
+
+    JSON request:
+    ```
+    {
+        "sender": sender login
+        "recipient": recipient login
+        "timestamps": [message timestamps]
+    }
+    ```
+    JSON response (201):
+    ```
+      {
+          "OK": "message deleted"
+      }
+    ```
 
 
 ## How to run:

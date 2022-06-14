@@ -26,7 +26,7 @@ def register():
         db.session.add(user)
         db.session.commit()
     except Exception as e:
-        return flask.jsonify({'error': 'internal error: {}'.format(str(e))}), 500
+        return flask.jsonify({'error': 'can\'t register user: {}'.format(str(e))}), 500
     return flask.jsonify({'OK': 'created user with login {}'.format(login)}), 201
 
 
@@ -69,14 +69,14 @@ def fetch_new_messages():
             result.append({
                 "sender": sender.login,
                 "recipient": recipient.login,
-                "timestamp": message.timestamp,
+                "timestamp": message.timestamp.isoformat(),
                 "message": message.content
             })
             message.is_read = True
 
         db.session.commit()
     except Exception as e:
-        return flask.jsonify({'error': 'internal error: {}'.format(str(e))}), 500
+        return flask.jsonify({'error': 'can\'t fetch messages: {}'.format(str(e))}), 500
 
     return flask.jsonify({'messages': result}), 200
 
@@ -118,21 +118,24 @@ def fetch_messages():
     period_start = datetime.fromisoformat(content['period_start'])
     period_end = datetime.fromisoformat(content['period_end'])
 
-    messages = db.session.query(models.Messages).filter(
-        models.Messages.timestamp.between(period_start, period_end)) \
-        .order_by(models.Messages.timestamp).all()
+    try:
+        messages = db.session.query(models.Messages).filter(
+            models.Messages.timestamp.between(period_start, period_end)) \
+            .order_by(models.Messages.timestamp).all()
 
-    result = []
-    for message in messages:
-        result.append({
-            "sender": sender.login,
-            "recipient": recipient.login,
-            "timestamp": message.timestamp,
-            "message": message.content
-        })
-        message.is_read = True
+        result = []
+        for message in messages:
+            result.append({
+                "sender": sender.login,
+                "recipient": recipient.login,
+                "timestamp": message.timestamp.isoformat(),
+                "message": message.content
+            })
+            message.is_read = True
 
-    db.session.commit()
+        db.session.commit()
+    except Exception as e:
+        return flask.jsonify({'error': 'can\'t fetch messages: {}'.format(str(e))}), 500
 
     return flask.jsonify({'messages': result}), 200
 
@@ -160,8 +163,11 @@ def send_message():
 
     message = models.Messages(sender=sender.id, recipient=recipient.id,
                               content=content["message"])
-    db.session.add(message)
-    db.session.commit()
+    try:
+        db.session.add(message)
+        db.session.commit()
+    except Exception as e:
+        return flask.jsonify({'error': 'can\'t send message: {}'.format(str(e))}), 500
 
     return flask.jsonify({'OK': 'message sent successfully'}), 201
 
@@ -189,9 +195,12 @@ def delete_messages():
 
     timestamps = list(map(lambda timestamp: datetime.fromisoformat(timestamp), content["timestamps"]))
 
-    delete_q = models.Messages.__table__.delete().where(models.Messages.timestamp.in_(timestamps))
-    db.session.execute(delete_q)
-    db.session.commit()
+    try:
+        delete_q = models.Messages.__table__.delete().where(models.Messages.timestamp.in_(timestamps))
+        db.session.execute(delete_q)
+        db.session.commit()
+    except Exception as e:
+        return flask.jsonify({'error': 'can\'t delete message: {}'.format(str(e))}), 500
 
     return flask.jsonify({'OK': 'messages deleted'}), 201
 
@@ -219,16 +228,16 @@ def delete_message():
 
     timestamp = datetime.fromisoformat(content["timestamp"])
 
-    if not sender or not recipient:
-        return flask.jsonify({'error': 'login not found'}), 400
+    try:
+        message = db.session.query(models.Messages).filter(models.Messages.timestamp == timestamp)
+        if not message.first():
+            return flask.jsonify({'error': 'message not found'}), 400
+        else:
+            message.delete()
 
-    message = db.session.query(models.Messages).filter(models.Messages.timestamp == timestamp)
-    if not message.first():
-        return "message not found"
-    else:
-        message.delete()
-
-    db.session.commit()
+        db.session.commit()
+    except Exception as e:
+        return flask.jsonify({'error': 'can\'t delete message: {}'.format(str(e))}), 500
 
     return flask.jsonify({'OK': 'message deleted'}), 201
 

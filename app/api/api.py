@@ -244,7 +244,4 @@ def delete_message():
 
 @app.route('/health', methods=['GET'])
 def health():
-    response = app.response_class(
-        status=200,
-    )
-    return response
+    return flask.jsonify({'OK': 'OK'}), 200

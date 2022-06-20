@@ -22,7 +22,6 @@ class Messages(db.Model):
     content = db.Column(db.Text, nullable=True)
 
     __table_args__ = (
-        db.ForeignKeyConstraint([sender], [User.id], ondelete='CASCADE'),
         db.UniqueConstraint(sender, recipient, timestamp),
         db.Index('timestamp_index', timestamp)
     )
